@@ -49,9 +49,10 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user ? (
-            <NavLink onClick={handleSignOut} className="btn" to="/">Sign Out</NavLink>
+            <NavLink onClick={handleSignOut} className="btn bg-violet-600 text-white"
+             to="/">Sign Out</NavLink>
           ) : (
-            <NavLink className="btn" to="/register">Log In</NavLink>
+            <NavLink className="btn bg-violet-600 text-white" to="/register">Log In</NavLink>
           )}
         </div>
       </div>

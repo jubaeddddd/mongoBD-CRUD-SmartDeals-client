@@ -10,12 +10,14 @@ import AuthProvider from './context/AuthProvider';
 import Register from './components/Register/Register';
 import MyProducts from './components/MyProducts/MyProducts';
 import MyBids from './components/MyBids/MyBids';
+import PrivateRoute from './components/Routes/PrivateRoute';
+import ProductDetails from './components/ProductDetails/ProductDetails';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component:RootLayout,
+    Component:RootLayout, 
     children:[
       {
         index:true,
@@ -31,11 +33,16 @@ const router = createBrowserRouter([
       },
       {
         path:'myProducts',
-        element:<MyProducts></MyProducts>
+        element:<PrivateRoute><MyProducts></MyProducts></PrivateRoute>
       },
       {
         path:'myBids',
-        Component:<MyBids></MyBids>
+        element:<PrivateRoute><MyBids></MyBids></PrivateRoute>
+      },
+      {
+        path:'productDetails/:id',
+        loader:({params})=>fetch(`http://localhost:3000/products/${params.id}`),
+        Component:ProductDetails
       }
     ]
   },
