@@ -1,14 +1,15 @@
 import { use } from "react"
 import { AuthContext } from "../../context/AuthContext"
-import { Navigate } from "react-router"
+import { Navigate, useLocation } from "react-router"
 
 const PrivateRoute = ({children}) => {
   const {user}=use(AuthContext)
+  const location=useLocation()
   
-  if(!user){
-    return <Navigate to="/"></Navigate>
+  if(user){
+    return children
   }
-  return children
+  return <Navigate state={location?.pathname} to='/'></Navigate>
 }
 
 export default PrivateRoute
